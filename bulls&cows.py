@@ -19,7 +19,7 @@ import random
 
 ciara = "-" * 47
 
-#print uvodneho pozdravu uzivatela
+# print uvodneho pozdravu uzivatela
 def vypis_pozdrav():
     """
     Jednoduchá funkcia, ktorá po zavolaní vypíše
@@ -32,9 +32,35 @@ def vypis_pozdrav():
         f"Enter a number:\n{ciara}\n"    
     )
 
-#def vytvor_nahodne_cislo() -> int:
-#    nahodne_cislo = randint(1000, 9999)
-#    return nahodne_cislo
+def vytvor_nahodne_cislo() -> int:
+    """
+    Funkcia, ktorá najprv vygeneruje prvé náhodné číslo, ktoré nesmie byť 0.
+    Následne pomocou cyklu pridáva ďlašie 3 čísla. Číslo sa nesmie opakovať
+    a nesmie byť už uložené v premennej prve_cislo aby sa zabezpečila unikátnosť.
+    """
+    
+    # Vygenerovanie prvej číslice od 1 do 9
+    prve_cislo = random.randint(1, 9)
+
+    # Vygenerovanie zvyšných troch číslic od 0 do 9
+    zvysne_cisla = []
+    while len(zvysne_cisla) < 3:
+        cislo = random.randint(0, 9)
+        if cislo not in zvysne_cisla and cislo != prve_cislo:
+            zvysne_cisla.append(cislo)
+
+    # Spojenie prvej číslice a zvyšných číslic do jedného čísla
+    nahodne_cislo = int(str(prve_cislo) + ''.join(map(str, zvysne_cisla)))
+    return nahodne_cislo
+
+
+print(vytvor_nahodne_cislo())
+
+
+
+
+
+
 
     
 #print(vypis_pozdrav())

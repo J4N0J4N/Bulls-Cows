@@ -16,6 +16,7 @@ Enter a number:
 -----------------------------------------------
 """
 import random
+import vstupna_hodnota 
 
 ciara = "-" * 47
 
@@ -54,13 +55,5 @@ def vytvor_nahodne_cislo() -> int:
     return nahodne_cislo
 
 
-print(vytvor_nahodne_cislo())
-
-
-
-
-
-
-
-    
-#print(vypis_pozdrav())
+print(vypis_pozdrav())
+print(vstupna_hodnota.zadaj_hodnotu())

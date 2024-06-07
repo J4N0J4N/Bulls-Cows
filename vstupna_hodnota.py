@@ -1,33 +1,49 @@
 def zadaj_hodnotu() -> int:
-
-    """zapracovat try/except/else
-       napisat cez cyklus while?
-       doplniť kontrolu duplicít
+    """
+    Vráť celé číslo, zadané užívateľom, ktoré nezačína nulou, obsahuje presne 4 hodnoty
+    a je unikátne.
+    
+    Cyklus beží, kým užívateľ nezadá správnu hodnotu, napríklad "1234".
+    
+    :Príklady zle zadanej hodnoty:
+    >>> cislo_uzivatela = 0123
+    >>> cislo_uzivatela = 123
+    >>> cislo_uzivatela = 12345
+    >>> cislo_uzivatela = 12as
+    >>> cislo_uzivatela = 1223
+    >>> cislo_uzivatela = 1.23
     """
 
-    
-    cislo_uzivatela = input(">>> ")
+    while True:
 
-    try:
+        # Vstupná hodnota od užívateľa
+        cislo_uzivatela = input(">>> ")
 
-        cislo_int = int(cislo_uzivatela)
+        try:
 
-    except ValueError:
-        print("hodnota nie je cislo")
-        zadaj_hodnotu()
+            # Ak je hodnotu od užívateľa možné zmeniť na integer, 
+            # po splnení podmienok vráti zadanú hodnotu ako typ integer
+            cislo_int = int(cislo_uzivatela)
 
-    else:
+            # Kontrola dĺžky
+            if len(cislo_uzivatela) != 4:
+                print("Your number must contain exactly 4 digits!")
+                continue
 
-        if len(cislo_uzivatela) != 4:
-            print("Your number has to contain exactly 4 digits!")
-            zadaj_hodnotu()
+            # Kontrola, či číslo nezačína nulou
+            if cislo_uzivatela[0] == "0":
+                print("Your number can't start with zero")
+                continue
 
-        if cislo_uzivatela[0] == "0":
-            print("Your number can't start with zero")
-            zadaj_hodnotu()
+            # Kontrola duplicít
+            # Ak sa v set() vyskytujú rovnaké znaky, vráti iba jeden z nich,
+            # tým pádom počet prvkov != 4 a vstup obsahuje duplikované znaky
+            if len(set(cislo_uzivatela)) != 4:
+                print("Your number must not contain duplicate digits!")
+                continue
 
+            return cislo_int
 
-        return(cislo_int)
-    
-
-
+        # Upozornenie v prípade, že vstup od užívateľa nie je možné zmeniť na integer
+        except ValueError:
+            print("Your input must be an integer")

@@ -42,8 +42,9 @@ def zadaj_hodnotu() -> int:
                 print("Your number must not contain duplicate digits!")
                 continue
 
-            return cislo_int
-
         # Upozornenie v prípade, že vstup od užívateľa nie je možné zmeniť na integer
         except ValueError:
             print("Your input must be an integer")
+
+        else:
+            return cislo_int

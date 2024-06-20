@@ -13,16 +13,17 @@ import time
 ciara = "-" * 47
 
 # print uvodneho pozdravu uzivatela
-def vypis_pozdrav():
-    """
-    Jednoduchá funkcia, ktorá po zavolaní vypíše
-    úvodný pozdrav užívateľa.
-    """
-    print(
-        f"Hi there!\n{ciara}\n"
-        f"I've generated a random 4 digit number for you.\n"
-        f"Let's play a bulls and cows game.\n{ciara}\n"
-        f"Enter a number:\n{ciara}\n"    
+#def vypis_pozdrav():
+#   """
+#    Jednoduchá funkcia, ktorá po zavolaní vypíše
+#    úvodný pozdrav užívateľa.
+#    """
+
+print(
+    f"Hi there!\n{ciara}\n"
+    f"I've generated a random 4 digit number for you.\n"
+    f"Let's play a bulls and cows game.\n{ciara}\n"
+    f"Enter a number:\n{ciara}\n"    
     )
 
 def vytvor_nahodne_cislo() -> int:
@@ -46,16 +47,16 @@ def vytvor_nahodne_cislo() -> int:
     nahodne_cislo = int(str(prve_cislo) + ''.join(map(str, zvysne_cisla)))
     return nahodne_cislo
 
-#moje_nahodne_cislo = vytvor_nahodne_cislo()
 
-"""def main(fce: callable): #-> None:
+"""def main(fce: callable) -> None:
     start = time.perf_counter()
     fce()
     stop = time.perf_counter()
     print(f"Celkem: {stop - start:.2f} sek")"""
 
-def vyhodnot_cislo_uzivatela():
+def vyhodnot_cislo_uzivatela() -> None:
 
+    # Vytvorenie náhodnéhon čísla pomocou funkcie vytvor_nahodne_cislo()
     moje_nahodne_cislo = vytvor_nahodne_cislo()
     print(moje_nahodne_cislo)
     
@@ -65,7 +66,6 @@ def vyhodnot_cislo_uzivatela():
         moj_pokus_uhadnut = str((vstupna_hodnota.zadaj_hodnotu()))
         
         zoznam = []
-        
         bull_count = 0
 
         for cisla in moj_pokus_uhadnut:
@@ -95,35 +95,31 @@ def vyhodnot_cislo_uzivatela():
             break
 
         else:
-            if bull_count and cow_count == 1:
+            if bull_count == 1 and cow_count == 1:
                 print(f"{bull_count} bull"
                       f"\n{cow_count} cow")
-                guess_count += 1
+                #guess_count += 1
             
             elif bull_count == 0 and cow_count == 1:
                 print(f"{bull_count} bulls"
                       f"\n{cow_count} cow")
-                guess_count += 1
+                #guess_count += 1
 
             elif bull_count == 1 and cow_count > 1:
                 print(f"{bull_count} bull"
                       f"\n{cow_count} cows")
-                guess_count += 1
+                #guess_count += 1
 
             else:
                 print(f"{bull_count} bulls"
                       f"\n{cow_count} cows")
-                guess_count += 1
+            
+            guess_count += 1
+
+
 
 
         
 
-
-
-
-
-#print(vytvor_nahodne_cislo())
-vypis_pozdrav()
-#print(vstupna_hodnota.zadaj_hodnotu())
-vyhodnot_cislo_uzivatela()
+print(type(vyhodnot_cislo_uzivatela()))
 #main(vyhodnot_cislo_uzivatela)

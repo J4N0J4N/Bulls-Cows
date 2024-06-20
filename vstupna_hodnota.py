@@ -48,3 +48,5 @@ def zadaj_hodnotu() -> int:
 
         else:
             return cislo_int
+        
+print(type(zadaj_hodnotu()))

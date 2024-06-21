@@ -49,7 +49,7 @@ def ziskaj_pokus_uzivatela() -> str:
     """
     return str(vstupna_hodnota.zadaj_hodnotu())
 
-def vyhodnot_pokus(moje_nahodne_cislo: str, moj_pokus_uhadnut: str) -> (int, int):
+def vyhodnot_pokus(moje_nahodne_cislo: str, moj_pokus_uhadnut: str) -> (int, int): # type: ignore
     """ 
     Vyhodnotí pokus a vráti počet bulls a cows. Jednotlivé kroky sú
     popisované priebežne.

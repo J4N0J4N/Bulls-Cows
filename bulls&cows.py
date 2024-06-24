@@ -125,9 +125,7 @@ def vyhodnot_cislo_uzivatela() -> None:
     sa pripočíta 1 (započíta sa pokus). Premenná guess_count je defaultne nastavená na 1,
     aby sa započítal už prvý pokus.
     """
-    moje_nahodne_cislo = vytvor_nahodne_cislo()
-    #print(moje_nahodne_cislo)
-    
+    moje_nahodne_cislo = vytvor_nahodne_cislo()    
     guess_count = 1
 
     while True:
@@ -138,6 +136,18 @@ def vyhodnot_cislo_uzivatela() -> None:
             break
         guess_count += 1
 
+    def zapis_statistiky() -> None:
+        """
+        Vnorená funkcia, ktorá uchováva štatistiku počtu odhadov pre jednotlivé hry.
+        Pracuje s premennou guess_count z funkcie vyhodnot_cislo_uzivatela(), do
+        ktorej je vnorená.
+        """
+        with open("statistika.txt", 
+                  mode="a", 
+                  encoding="UTF-8") as txt_soubor:
+            txt_soubor.write(f"\nDuring this round, the number of attemts you needed was {guess_count}")
+    zapis_statistiky()
+
 def main(fce: callable) -> None:
     """
     Funkcia, ktorá meria čas v sekundách za ktorý užívateľ uhádne číslo.
@@ -145,7 +155,7 @@ def main(fce: callable) -> None:
     start = time.perf_counter()
     fce()
     stop = time.perf_counter()
-    print(f"Celkem: {stop - start:.2f} sek")
+    print(f"The time it took you to guess: {stop - start:.2f} sek")
 
 if __name__ == "__main__":
     main(vyhodnot_cislo_uzivatela)

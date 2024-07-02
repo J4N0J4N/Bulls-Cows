@@ -60,25 +60,28 @@ def vyhodnot_pokus(moje_nahodne_cislo: str, moj_pokus_uhadnut: str) -> (int, int
     """
     Cyklus iteruje cez číslo zadané užívateľom. Ak sa niektorá číslica z čísla
     zadaného užívateľom nachádza v náhodne vygenerovanom čísle, pridá ju do zoznamu
-    spravne_cislice. Na konci funkcia uloží do premennej cow_count počet číslic, ktoré
-    sú v liste spravne_cislice.
+    spravne_cislice.
     """
     for cisla in moj_pokus_uhadnut:
         if cisla in str(moje_nahodne_cislo):
             spravne_cislice.append(cisla)
+    
+    # Po prejdení cyklu funkcia uloží do premennej cow_count počet číslic, ktoré sú v liste spravne_cislice.
+    cow_count = len(spravne_cislice)
 
     """
     zip() spojí čislice z vygenerovaného čísla a čísla od užívateľa do dvojíc.
     enumerate() pridá týmto dvojiciam index a cyklus iteruje v podstate cez trojice 
     číslic. Ak sa dvojica čísel na jednom indexe rovná, pripočíta sa 1 do premennej
-    bull_count.
+    bull_count. V takom prípade sa zároveň odpočíta jedna hodnota z premennej cow_count.
     """
 
     for index, (cislica_generovana, cislica_pokus) in enumerate(zip(str(moje_nahodne_cislo), moj_pokus_uhadnut)):
         if cislica_generovana == cislica_pokus:
             bull_count += 1
+            cow_count -= 1   # odpočíta hodnotu z premennej cow_count v prípade, že hráč uhádne správnu číslicu 
+                             # na správnom mieste, teda bull_count += 1
 
-    cow_count = len(spravne_cislice)
     return bull_count, cow_count
         
 def vytvor_vystup(bull_count: int, cow_count: int, guess_count: int) -> None:
@@ -100,13 +103,17 @@ def vytvor_vystup(bull_count: int, cow_count: int, guess_count: int) -> None:
         else:
             print(f"Correct, you've guessed the right number in {guess_count} guesses!\nThat's not so good!")
         return True
-    else:
+    else: # výpis bol upravený o podmienky tak, aby sa správne v rôznych situáciách vypisovalo bull/bulls a cow/cows 
         if bull_count == 1 and cow_count == 1:
             print(f"{bull_count} bull\n{cow_count} cow")
+        elif bull_count == 1 and cow_count == 0:
+            print(f"{bull_count} bull\n{cow_count} cows")
         elif bull_count == 0 and cow_count == 1:
             print(f"{bull_count} bulls\n{cow_count} cow")
         elif bull_count == 1 and cow_count > 1:
             print(f"{bull_count} bull\n{cow_count} cows")
+        elif bull_count > 1 and cow_count == 1:
+            print(f"{bull_count} bulls\n{cow_count} cow")
         else:
             print(f"{bull_count} bulls\n{cow_count} cows")
         return False

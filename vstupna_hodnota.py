@@ -12,6 +12,11 @@ def zadaj_hodnotu() -> int:
     >>> cislo_uzivatela = 12as
     >>> cislo_uzivatela = 1223
     >>> cislo_uzivatela = 1.23
+
+    Funkciu som ponechal mimo hlavného kódu, aby som zúžitkoval všetko, čo sme 
+    sa počas lekcií učili, teda chcel som si vyskúšať prácu s vlastným modulom.
+    Rozumiem, že takéto využitie jednoduchého modulu nedáva zmysel a je
+    zbytočné.
     """
 
     while True:
